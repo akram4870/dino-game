@@ -1,3 +1,4 @@
+using Mediapipe.Unity.Sample.HandTracking;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -27,7 +28,8 @@ public class Player : MonoBehaviour
         {
             direction = Vector3.down;
 
-            if (Input.GetButton("Jump")) {
+            HandTrackingSolution handTrackingSolution = FindObjectOfType<HandTrackingSolution>();
+            if (handTrackingSolution != null && handTrackingSolution.IsHandClosed) {
                 direction = Vector3.up * jumpForce;
             }
         }
